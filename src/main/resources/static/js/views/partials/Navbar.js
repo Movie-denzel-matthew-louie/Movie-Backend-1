@@ -1,12 +1,14 @@
 export default function Navbar(props) {
-    return `
+
+    // everyone can see home
+    let html = `
         <nav>
-            <a href="/" data-link>Home</a>
-            <a href="/posts" data-link>Posts</a>
-            <a href="/about" data-link>About</a>
-            <a href="/login" data-link>Login</a>
-            <a href="/register" data-link>Register</a>
-            <a href="/me" data-link>About ME</a>
-        </nav>
-    `;
+            <div id="logoDiv" class="link"><a href="/" data-link id="logo">Cult-Flix</a></div>`;
+
+    html = html + `<div class="link"><a href="/editMovie" data-link>Edit Movie Info</a></div>`;
+
+    html = html + `<div class="link"><a href="/searchMovies" data-link>Find<i id="magnifying" class="fa-solid fa-magnifying-glass"></i></a></div>`;
+
+    html = html + `</nav><hr>`;
+    return html;
 }
