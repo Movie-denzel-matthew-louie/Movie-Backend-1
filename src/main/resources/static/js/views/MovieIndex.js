@@ -25,6 +25,9 @@ export default function moviesIndex(props) {
                 <label for="description">Description</label><br>
                 <textarea id="description" name="description" rows="10" cols="75" placeholder="Enter description"></textarea>
                 <br>
+                <label for="director">Director</label><br>
+                <input id="director" name="director" type="director" placeholder="Enter Director">
+                <br>
                 <button data-id="0" id="saveMovie" name="saveMovie" class="button btn-primary">Save Movie</button>
             </form>
             
@@ -104,8 +107,10 @@ function loadMovieIntoForm(movieId) {
     // load the movies' data into the form
     const nameField = document.querySelector("#name");
     const descriptionField = document.querySelector("#description");
+    const directorField = document.querySelector("#director")
     nameField.value = movie.name;
     descriptionField.value = movie.description;
+    directorField.value = movie.director;
 
     const saveButton = document.querySelector("#saveMovie");
     saveButton.setAttribute("data-id", movieId);
@@ -137,11 +142,11 @@ function setupDeleteHandlers() {
     }
 }
 
-function deleteMovie(id) {
+function deleteMovie(movieId) {
     const request = {
         method: "DELETE",
     }
-    const url = MOVIE_API_BASE_URL + `/${id}`;
+    const url = MOVIE_API_BASE_URL + `/${movieId}`;
     fetch(url, request)
         .then(function(response) {
             if(response.status !== 200) {
@@ -166,17 +171,22 @@ function saveMovie(movieId) {
     // get the name and description for the new/updated movie
     const nameField = document.querySelector("#name");
     const descriptionField = document.querySelector("#description");
+    const directorField = document.querySelector("#director");
 
     // make the new/updated movie object
     const movie = {
         name: nameField.value,
-        description: descriptionField.value
+        description: descriptionField.value,
+        director: directorField.value
     }
 
     // make the request
     const request = {
         method: "POST",
-        body: JSON.stringify(movie)
+        body: JSON.stringify(movie),
+        headers: {
+            'Content-Type': 'application/json'
+        }
     }
     let url = MOVIE_API_BASE_URL;
 

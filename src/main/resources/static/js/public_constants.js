@@ -3,4 +3,4 @@
 const FRONTEND_VERSION = 0.0001;
 const APP_TITLE = "Jalopy Starter";
 const SKIP_STALE_TOKEN_CHECK = true;
-const MOVIE_API_BASE_URL = "http://localhost:8080";
+const MOVIE_API_BASE_URL = "http://localhost:8080/api/movies";
