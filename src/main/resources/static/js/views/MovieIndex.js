@@ -41,8 +41,8 @@ function generatePostsHTML(movies) {
         <thead>
         <tr>
             <th scope="col">Name</th>
-            <th scope="col">Genre</th>
             <th scope="col">Description</th>
+            <th scope="col">Genre</th>
             <th scope="col">Director</th>
         </tr>
         </thead>
