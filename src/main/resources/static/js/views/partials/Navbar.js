@@ -5,7 +5,7 @@ export default function Navbar(props) {
         <nav>
             <div id="logoDiv" class="link"><a href="/" data-link id="logo">Groovy Movie</a></div>`;
 
-    html = html + `<div class="link"><a href="/moviesIndex" data-link>Movie CRUD</a></div>`;
+    html = html + `<div class="link"><a href="/movies" data-link>Movie CRUD</a></div>`;
 
     html = html + `<div class="link"><a href="/searchMovies" data-link>Search<i id="magnifying" class="fa-solid fa-magnifying-glass"></i></a></div>`;
 
