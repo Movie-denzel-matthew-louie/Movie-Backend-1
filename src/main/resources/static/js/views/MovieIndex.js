@@ -17,10 +17,10 @@ export default function moviesIndex(props) {
                 ${moviesHTML}   
             </div>
             
-            <h3>Add a post</h3>
+            <h3>Add a Movie</h3>
             <form>
-                <label for="title">Name</label><br>
-                <input id="title" name="name" type="name" placeholder="Enter name">
+                <label for="name">Name</label><br>
+                <input id="name" name="name" type="name" placeholder="Enter name">
                 <br>
                 <label for="description">Description</label><br>
                 <textarea id="description" name="description" rows="10" cols="75" placeholder="Enter description"></textarea>
@@ -60,9 +60,9 @@ function generatePostsHTML(movies) {
             <td>${movie.name}</td>
             <td>${movie.description}</td>
             <td>${genres}</td>
-            <td>${movie.director.userName}</td>
-            <td><button data-id=${movie.id} class="button btn-primary editPost">Edit</button></td>
-            <td><button data-id=${movie.id} class="button btn-danger deletePost">Delete</button></td>
+            <td>${movie.director}</td>
+            <td><button data-id=${movie.id} class="button btn-primary editMovie">Edit</button></td>
+            <td><button data-id=${movie.id} class="button btn-danger deleteMovie">Delete</button></td>
             </tr>`;
     }
     movieHTML += `</tbody></table>`;
@@ -88,14 +88,14 @@ function setupEditHandlers() {
             // get the movie id of the delete button
             const movieId = parseInt(this.getAttribute("data-id"));
 
-            loadPostIntoForm(movieId);
+            loadMovieIntoForm(movieId);
         });
     }
 }
 
-function loadPostIntoForm(movieId) {
+function loadMovieIntoForm(movieId) {
     // go find the movie in the movies' data that matches postId
-    const movie = fetchPostById(movieId);
+    const movie = fetchMovieById(movieId);
     if(!movie) {
         console.log("did not find movie for id " + movieId);
         return;
@@ -111,7 +111,7 @@ function loadPostIntoForm(movieId) {
     saveButton.setAttribute("data-id", movieId);
 }
 
-function fetchPostById(movieId) {
+function fetchMovieById(movieId) {
     for (let i = 0; i < movies.length; i++) {
         if(movies[i].id === movieId) {
             return movies[i];
@@ -124,24 +124,24 @@ function fetchPostById(movieId) {
 
 function setupDeleteHandlers() {
     // target all delete buttons
-    const deleteButtons = document.querySelectorAll(".deletePost");
+    const deleteButtons = document.querySelectorAll(".deleteMovie");
     // add click handler to all delete buttons
     for (let i = 0; i < deleteButtons.length; i++) {
         deleteButtons[i].addEventListener("click", function(event) {
 
-            // get the post id of the delete button
+            // get the movie id of the delete button
             const movieId = this.getAttribute("data-id");
 
-            deletePost(movieId);
+            deleteMovie(movieId);
         });
     }
 }
 
-function deletePost(movieId) {
+function deleteMovie(id) {
     const request = {
         method: "DELETE",
     }
-    const url = MOVIE_API_BASE_URL + `/${movieId}`;
+    const url = MOVIE_API_BASE_URL + `/${id}`;
     fetch(url, request)
         .then(function(response) {
             if(response.status !== 200) {
@@ -158,11 +158,11 @@ function setupSaveHandler() {
     const saveButton = document.querySelector("#saveMovie");
     saveButton.addEventListener("click", function(event) {
         const movieId = parseInt(this.getAttribute("data-id"));
-        savePost(movieId);
+        saveMovie(movieId);
     });
 }
 
-function savePost(movieId) {
+function saveMovie(movieId) {
     // get the name and description for the new/updated movie
     const nameField = document.querySelector("#name");
     const descriptionField = document.querySelector("#description");
