@@ -9,7 +9,7 @@ import {getHeaders, removeStaleTokens} from "./auth.js";
  */
 export default async function createView(URI) {
     // createView must wait for stale token removal before finishing view creation
-    await removeStaleTokens();
+    // await removeStaleTokens();
 
     // remove trailing / if URI is not "/"
     if(URI.length > 1 && URI.substring(URI.length - 1, URI.length) === "/")
