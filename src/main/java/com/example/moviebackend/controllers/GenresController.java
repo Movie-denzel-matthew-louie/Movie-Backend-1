@@ -17,7 +17,7 @@ public class GenresController {
     private GenresRepositories genresRepositories;
 
     @GetMapping("")
-    private List<Genre> fetchAllGenres(@RequestParam String genreName) {
+    private List<Genre> fetchAllGenres( ) {
 
         return genresRepositories.findAll();
 
