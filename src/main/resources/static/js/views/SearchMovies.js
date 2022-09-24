@@ -6,19 +6,21 @@ export default function SearchMovies(props) {
         
     </header>
     <main>
-        <div id="formContainer">
-            <div id="searchForm">
-				<form>
-					<label for="searchInput" id="searchLabel">Search and you will find ...</label>
-					<input type="text" id="searchInput" placeholder="Search for a movie!">
-                    <button id="submit">Submit</button>
-				</form>
-            </div>
-        </div>
+       
+          
+	            <h1 style="color:white;">Search and you will find ...</h1>
+	            <form class="form_">
+		            <label for="searchInput" id="searchLabel" style="color:rgb(138, 0, 252);">No pressure<svg class="no_pressure" style="color: #f3da35" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><path d="M35.1,93.3,62.5,209.8a8.1,8.1,0,0,0,7.8,6.2H185.7a8.1,8.1,0,0,0,7.8-6.2L220.9,93.3a8.1,8.1,0,0,0-10-9.6L168,96,131,81.2a7.8,7.8,0,0,0-6,0L88,96,45.1,83.7A8.1,8.1,0,0,0,35.1,93.3Z" fill="#f3da35" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"></path><line x1="88" y1="96" x2="104" y2="216" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"></line><line x1="168" y1="96" x2="152" y2="216" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"></line><path d="M216,84a36,36,0,0,0-52.9-31.8,35.9,35.9,0,0,0-70.2,0A36,36,0,0,0,40,84" fill="#f3da35" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"></path></svg> </label>
+		            <input type="text" id="searchInput" placeholder="Search for a movie!">
+
+
+		            <button class="form-control" id="submit">Submit</button>
+		            <br><br>
+	            </form>
         
         <div id="moviesContainer">
             
-        </div>
+    
     </main>
     </body>
     `;
