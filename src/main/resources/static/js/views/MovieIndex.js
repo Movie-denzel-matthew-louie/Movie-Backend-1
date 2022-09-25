@@ -62,8 +62,8 @@ function generatePostsHTML(movies) {
                                 <a href=""><i class="play_movie fa-solid fa-circle-play"></i></a>
                                 <a href=""><i class="add_movie fa-solid fa-circle-plus"></i></a>
                                 <a href=""><i class="like_movie fa-solid fa-heart"></i></a>
-                                <a data-id=${movie.id} class="button btn-danger deleteMovie" href=""><i class="del_photo fas fa-times"></i></a>
-                                <a data-id=${movie.id} class="button btn-primary editMovie" href=""><i class="edit_photo far fa-edit"></i></a>
+                                <a data-id=${movie.id} class="button btn-danger deleteMovie" href=""><i style=" position: fixed" class="del_photo fas fa-times"></i></a>
+                                <a data-id=${movie.id} class="button btn-primary editMovie" href=""><i style=" position: fixed"  class="edit_photo far fa-edit"></i></a>
                             </div>
                             </div>
                         </div>
