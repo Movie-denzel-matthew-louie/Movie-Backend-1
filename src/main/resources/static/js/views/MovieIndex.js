@@ -12,12 +12,12 @@ export default function moviesIndex(props) {
             <h1>Movies Page</h1>
         </header>
         <main>
-              <h3>Movie list</h3>
-            <div>
+              <h3 id="CRUD_title">Movie list</h3>
+              <div id="homeContainer">
                 ${moviesHTML}   
-            </div>
+              </div>
             
-            <h3>Add a Movie</h3>
+            <h3 id="add_movie">Add a Movie</h3>
             <form>
                 <label for="name">Name</label><br>
                 <input id="name" name="name" type="name" placeholder="Enter name">
@@ -36,18 +36,7 @@ export default function moviesIndex(props) {
 }
 
 function generatePostsHTML(movies) {
-    let movieHTML = `
-        <table class="table">
-        <thead>
-        <tr id="movie_row">
-            <th scope="col">Name</th>
-            <th scope="col">Description</th>
-            <th scope="col">Genre</th>
-            <th scope="col">Director</th>
-        </tr>
-        </thead>
-        <tbody id="movie_body">
-    `;
+    let movieHTML = ``;
     for (let i = 0; i < movies.length; i++) {
         const movie = movies[i];
 
@@ -59,14 +48,27 @@ function generatePostsHTML(movies) {
             genres += movie.genres[j].name;
         }
 
-        movieHTML += `<tr>
-            <td>${movie.name}</td>
-            <td>${movie.description}</td>
-            <td>${genres}</td>
-            <td>${movie.director}</td>
-            <td><button data-id=${movie.id} class="button btn-primary editMovie">Edit</button></td>
-            <td><button data-id=${movie.id} class="button btn-danger deleteMovie">Delete</button></td>
-            </tr>`;
+        movieHTML += ` <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img id="movieTemplate" src="https://picsum.photos/300/450" alt="movie picture">
+                                <p class="movieDetails"></p>
+                            </div>
+                            <div class="flip-card-back">
+                                <p class="movieDetails">${movie.name}</p>
+                                <p class="movieRating">Director: ${movie.director}</p>
+                                <p class="backOverview">${movie.description}</p>
+                            <div>
+                                <a href=""><i class="play_movie fa-solid fa-circle-play"></i></a>
+                                <a href=""><i class="add_movie fa-solid fa-circle-plus"></i></a>
+                                <a href=""><i class="like_movie fa-solid fa-heart"></i></a>
+                                <a data-id=${movie.id} class="button btn-danger deleteMovie" href=""><i class="del_photo fas fa-times"></i></a>
+                                <a data-id=${movie.id} class="button btn-primary editMovie" href=""><i class="edit_photo far fa-edit"></i></a>
+                            </div>
+                            </div>
+                        </div>
+                       </div>
+        `;
     }
     movieHTML += `</tbody></table>`;
     return movieHTML;

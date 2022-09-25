@@ -33,9 +33,9 @@ function makeCards(props) {
                                          <p class="movieRating">Rating: ${props.TmbdMovies.results[i].vote_average}</p>
                                          <p class="backOverview">${props.TmbdMovies.results[i].overview}</p>
                                          <div>
-                                         <a href=""><i class="fa-solid fa-circle-play"></i></a>
-                                         <a href=""><i class="fa-solid fa-circle-plus"></i></a>
-                                         <a href=""><i class="fa-solid fa-heart"></i></a>
+                                         <a href=""><i class="play_movie fa-solid fa-circle-play"></i></a>
+                                         <a href=""><i class="add_movie fa-solid fa-circle-plus"></i></a>
+                                         <a href=""><i class="like_movie fa-solid fa-heart"></i></a>
                                         </div>
                                        </div>
                                     </div>         
