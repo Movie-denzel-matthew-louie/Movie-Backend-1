@@ -39,14 +39,14 @@ function generatePostsHTML(movies) {
     let movieHTML = `
         <table class="table">
         <thead>
-        <tr>
+        <tr id="movie_row">
             <th scope="col">Name</th>
             <th scope="col">Description</th>
             <th scope="col">Genre</th>
             <th scope="col">Director</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id="movie_body">
     `;
     for (let i = 0; i < movies.length; i++) {
         const movie = movies[i];

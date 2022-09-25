@@ -26,11 +26,10 @@ function makeCards(props) {
                                     <div class="flip-card-inner">
                                        <div class="flip-card-front">
                                          <img id="movieTemplate" src="https://image.tmdb.org/t/p/w300${props.TmbdMovies.results[i].poster_path}" alt="movie picture">
-<!--                                         <p class="movieDetails">${props.TmbdMovies.results[i].title}</p>-->
                                          <p class="movieDetails"></p>
                                        </div>   
                                        <div class="flip-card-back">
-                                         <p class="movieDetails">${props.TmbdMovies.results[i].name}</p>
+                                         <p class="movieDetails">${props.TmbdMovies.results[i].title}</p>
                                          <p class="movieRating">Rating: ${props.TmbdMovies.results[i].vote_average}</p>
                                          <p class="backOverview">${props.TmbdMovies.results[i].overview}</p>
                                          <div>
