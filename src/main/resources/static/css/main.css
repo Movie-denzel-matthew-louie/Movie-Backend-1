@@ -1,6 +1,7 @@
+
 body {
     margin: 0;
-    background-color: #191A1D;;
+    background-color: #191A1D;
 }
 
 nav {
@@ -130,6 +131,7 @@ a:hover {
     height: 100%;
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
+    box-sizing: inherit;
 }
 
 /* Style the front side (fallback if image is missing) */
