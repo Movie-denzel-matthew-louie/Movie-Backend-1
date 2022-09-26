@@ -1,11 +1,14 @@
 import createView from "../createView.js";
 
 let movies;
+let genres;
 
 export default function moviesIndex(props) {
     const moviesHTML = generatePostsHTML(props.movies);
+    const genreHTML = generateGenreHTML(props.genres);
     // save this for loading edits later
     movies = props.movies;
+    genres = props.genres;
 
     return `
         <header>
@@ -19,7 +22,7 @@ export default function moviesIndex(props) {
             
             <h3 id="add_movie">Add a Movie</h3>
             <form>
-                 <label for="title">Title</label><br>
+                 <label class="movie_title text-white" for="title">Title</label><br>
                 <input id="title" style="width: 20%" name="title" type="text" placeholder="Enter a title"> <br>
                 <div class="invalid-feedback">
                     Title cannot be blank
@@ -29,7 +32,7 @@ export default function moviesIndex(props) {
                 </div>
             </div>
             <div>    
-                <label id="label" for="content">Description</label> <br>
+                <label class="text-white" id="label" for="content">Description</label> <br>
                 <textarea id="content" name="content" rows="10" cols="50" placeholder="Enter description"></textarea>
                 <div class="invalid-feedback">
                     Description cannot be blank
@@ -38,9 +41,13 @@ export default function moviesIndex(props) {
                     Your description is ok!
                 </div>
                 <br>
-                <label for="director">Director</label><br>
+                <label class="text-white" for="director">Director</label><br>
                 <input id="director" name="director" type="director" placeholder="Enter Director">
                 <br>
+                <br>
+                <h6 class="text-white">Genres</h6>
+                ${genreHTML}
+                
                 <button data-id="0" id="saveMovie" name="saveMovie" class="button btn-primary">Save Movie</button>
             </form>
             
@@ -70,6 +77,7 @@ function generatePostsHTML(movies) {
                             <div class="flip-card-back">
                                 <p class="movieDetails">${movie.name}</p>
                                 <p class="movieRating">Director: ${movie.director}</p>
+                                <p class="movieRating">Genres: ${genres}</p>
                                 <p class="backOverview">${movie.description}</p>
                             <div>
                                 <a href=""><i class="play_movie fa-solid fa-circle-play"></i></a>
@@ -156,8 +164,8 @@ function loadMovieIntoForm(movieId) {
     }
 
     // load the movies' data into the form
-    const nameField = document.querySelector("#name");
-    const descriptionField = document.querySelector("#description");
+    const nameField = document.querySelector("#title");
+    const descriptionField = document.querySelector("#content");
     const directorField = document.querySelector("#director")
     nameField.value = movie.name;
     descriptionField.value = movie.description;
@@ -220,17 +228,19 @@ function setupSaveHandler() {
 
 function saveMovie(movieId) {
     // get the name and description for the new/updated movie
-    const nameField = document.querySelector("#name");
-    const descriptionField = document.querySelector("#description");
+    const nameField = document.querySelector("#title");
+    const descriptionField = document.querySelector("#content");
     const directorField = document.querySelector("#director");
 
     // make the new/updated movie object
+    const selectedGenres = getSelectedGenres();
     const movie = {
         name: nameField.value,
         description: descriptionField.value,
-        director: directorField.value
+        director: directorField.value,
+        genres: selectedGenres
     }
-
+        console.log(movie);
     // make the request
     const request = {
         method: "POST",
@@ -258,3 +268,35 @@ function saveMovie(movieId) {
         })
 }
 
+function generateGenreHTML(genres) {
+    let genreHTML = ``;
+    for (let i = 0; i < genres.length; i++) {
+        const genre = genres[i];
+
+        genreHTML += `
+            <div class="form-check">
+                <input class="form-check-input genre-checkbox" type="checkbox" value="" data-id="${genre.id}" id="category_${genre.id}">
+                <label class="form-check-label text-white" for="flexCheckDefault">
+                    ${genre.name}
+                </label>
+            </div>`;
+    }
+    return genreHTML;
+}
+
+function getSelectedGenres() {
+    let genres = [];
+    const checkboxes = document.querySelectorAll(".genre-checkbox");
+
+    for (let i = 0; i < checkboxes.length; i++) {
+        const checkbox = checkboxes[i];
+        if(checkbox.checked) {
+            const id = checkbox.getAttribute("data-id");
+            const genre = {
+                id
+            }
+            genres.push(genre);
+        }
+    }
+    return genres;
+}

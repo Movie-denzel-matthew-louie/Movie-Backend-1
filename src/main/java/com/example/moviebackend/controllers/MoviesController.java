@@ -45,14 +45,9 @@ public class MoviesController {
     public void createMovie(@RequestBody Movie newMovie){
 
 
-        newMovie.setGenres(new ArrayList<>());
-
+        System.out.println(newMovie);
         // use first 2 categories for the post by default
-        Genre cat1 = genresRepositories.findById(1L).get();
-        Genre cat2 = genresRepositories.findById(2L).get();
 
-        newMovie.getGenres().add(cat1);
-        newMovie.getGenres().add(cat2);
 
         movieRepositories.save(newMovie);
     }
