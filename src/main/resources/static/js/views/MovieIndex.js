@@ -96,7 +96,18 @@ function generatePostsHTML(movies) {
 }
 
 
+async function fetchPoster() {
+    let userInput = document.querySelector('#searchInput');
 
+    return await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${POSTER_API}&language=en-US&query=${userInput.value}&page=1&include_adult=false`)
+        .then(async function (response) {
+            if (response.status !== 200) {
+                console.log("cannot read tools file");
+                return "";
+            } else
+                return await response.json();
+        });
+}
 
 export function movieSetup() {
     setupSaveHandler();
