@@ -57,3 +57,19 @@
     bottom: 10px;
     text-align: center;
 }
+.about {
+    color: #FFE477;
+}
+.a-home {
+    position: absolute;
+    bottom: 3px;
+    right: 3%;
+    font-size: 30px;
+}
+.icons {
+    width: 30px;
+    height: 30px;
+    color: #8A00FC;
+    padding: 10px;
+
+}
