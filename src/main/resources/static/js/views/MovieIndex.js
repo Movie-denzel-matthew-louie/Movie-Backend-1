@@ -19,11 +19,24 @@ export default function moviesIndex(props) {
             
             <h3 id="add_movie">Add a Movie</h3>
             <form>
-                <label for="name">Name</label><br>
-                <input id="name" name="name" type="name" placeholder="Enter name">
-                <br>
-                <label for="description">Description</label><br>
-                <textarea id="description" name="description" rows="10" cols="75" placeholder="Enter description"></textarea>
+                 <label for="title">Title</label><br>
+                <input id="title" style="width: 20%" name="title" type="text" placeholder="Enter a title"> <br>
+                <div class="invalid-feedback">
+                    Title cannot be blank
+                </div>
+                <div class="valid-feedback">
+                    Your title is ok!
+                </div>
+            </div>
+            <div>    
+                <label id="label" for="content">Description</label> <br>
+                <textarea id="content" name="content" rows="10" cols="50" placeholder="Enter description"></textarea>
+                <div class="invalid-feedback">
+                    Description cannot be blank
+                </div>
+                <div class="valid-feedback">
+                    Your description is ok!
+                </div>
                 <br>
                 <label for="director">Director</label><br>
                 <input id="director" name="director" type="director" placeholder="Enter Director">
@@ -81,7 +94,43 @@ export function movieSetup() {
     setupSaveHandler();
     setupEditHandlers();
     setupDeleteHandlers();
+    setupValidationHandlers();
+    validateFields();
+
 }
+function setupValidationHandlers() {
+    let input = document.querySelector("#title");
+    input.addEventListener("keyup", validateFields);
+    input = document.querySelector("#content");
+    input.addEventListener("keyup", validateFields);
+
+}
+
+function validateFields() {
+    let isValid = true;
+    let input = document.querySelector("#title");
+    if(input.value.trim().length < 1) {
+        input.classList.add("is-invalid");
+        input.classList.remove("is-valid");
+        isValid = false;
+    } else {
+        input.classList.add("is-valid");
+        input.classList.remove("is-invalid");
+    }
+    input = document.querySelector("#content");
+
+    if(input.value.trim().length < 1) {
+        input.classList.add("is-invalid");
+        input.classList.remove("is-valid");
+        isValid = false;
+    } else {
+        input.classList.add("is-valid");
+        input.classList.remove("is-invalid");
+    }
+
+    return isValid
+}
+
 
 function setupEditHandlers() {
     // target all delete buttons
