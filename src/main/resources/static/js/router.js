@@ -42,7 +42,8 @@ export default function router(URI) {
         '/movies': {
             returnView: moviesIndex,
             state: {
-                movies: 'api/movies'
+                movies: 'api/movies',
+                genres: 'api/genres'
             },
             uri: '/movies',
             title: 'All Movies',
