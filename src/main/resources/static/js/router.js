@@ -4,6 +4,7 @@ import Loading from "./views/Loading.js";
 import SearchMovies, {SearchMoviesEvents} from "./views/SearchMovies.js";
 // import EditMovie, {EditMoviesEvents} from "./views/EditMovie.js";
 import moviesIndex, {movieSetup} from "./views/MovieIndex.js";
+import About, {AboutEvents} from "./views/About.js";
 
 /**
  * Returns the route object for a specific route based on the given URI
@@ -38,6 +39,13 @@ export default function router(URI) {
             uri: '/searchMovies',
             title: 'Search Movies',
             viewEvent: SearchMoviesEvents
+        },
+        '/about': {
+            returnView: About,
+            state: {},
+            uri: '/about',
+            title: 'About',
+            viewEvent: AboutEvents
         },
         '/movies': {
             returnView: moviesIndex,
